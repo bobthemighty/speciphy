@@ -1,0 +1,18 @@
+{
+    "name": "bobthemighty/Speciphy",
+    "description": "Simple specification style unit testing for PHP",
+    "license": "MIT",
+    "keywords": ["bdd", "xspec", "tdd", "testing", "specification"],
+    "authors": [
+        {
+            "name": "Bob Gregory",
+            "email": "bob.gregory@made.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Speciphy": "src/framework"
+        }
+    }
+}
