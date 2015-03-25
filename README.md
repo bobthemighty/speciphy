@@ -1,5 +1,5 @@
 # speciphy
-Simple context/specification style testing for PHP, inspired by mspec and contexts
+Simple context/specification style testing for PHP, inspired by [mspec](https://github.com/machine/machine.specifications) and the wonderful [contexts](https://github.com/benjamin-hodgson/Contexts)
 
 ## Does it work yet?
 
