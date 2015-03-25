@@ -1,6 +1,6 @@
 {
     "name": "bobthemighty/Speciphy",
-    "description": "Simple specification style unit testing for PHP",
+    "description": "Simple context/specification style unit testing for PHP",
     "license": "MIT",
     "keywords": ["bdd", "xspec", "tdd", "testing", "specification"],
     "authors": [
@@ -9,10 +9,14 @@
             "email": "bob.gregory@made.com"
         }
     ],
-    "require": {},
+    "require": {
+        "hamcrest/hamcrest-php": "1.2.1",
+        "mindplay/annotations": "1.2.*@dev"
+    },
     "autoload": {
         "psr-4": {
-            "Speciphy": "src/framework"
-        }
+            "Speciphy\\": "src/"
+        },
+        "files": ["src/Framework/expect.php"]
     }
 }

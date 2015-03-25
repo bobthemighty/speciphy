@@ -21,7 +21,7 @@
 *                    * error_log(Color::set("Success", "green+bold"), "Something was successful!");
 *                     * @endcode
 *                      */
-namespace PhpAnsiColor;
+namespace Speciphy\Framework;
 
 class Color
 {
