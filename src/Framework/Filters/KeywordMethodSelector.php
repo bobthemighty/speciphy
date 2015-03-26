@@ -4,9 +4,9 @@ namespace Speciphy\Framework\Filters;
 
 class KeywordMethodSelector implements ISelectMethods
 {
-    function __construct($keyword)
+    function __construct($keywords)
     {
-        $this->keyword = $keyword;
+        $this->keywords = $keywords;
     }
 
     function select($method)
@@ -14,8 +14,10 @@ class KeywordMethodSelector implements ISelectMethods
         $words = explode("_", $method->name);
         foreach($words as $word)
         {
-            if($word == $this->keyword){
+            foreach($this->keywords as $kw) {
+            if($word == $kw){
                 return true;
+            }
             }
         }
     }

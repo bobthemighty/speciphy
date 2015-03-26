@@ -26,9 +26,9 @@ class Context
     {
        if($this->given)
        {
-           $this->given->invoke($ctx);
-           $recorder->recordSetup($this->given->name);
-       }
+               $this->given->invoke($ctx);
+               $recorder->recordSetup($this->given->name);
+        }
     }
     
     function executeAction($ctx, $recorder)

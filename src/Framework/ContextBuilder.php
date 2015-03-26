@@ -12,7 +12,8 @@ class ContextBuilder
 
     function __construct()
     {
-        $this->assertionFilter = new MethodFilter([new KeywordMethodSelector("should"), new AssertionAnnotationSelector()], [new NospecRejector()]);
+        $this->assertionFilter = new MethodFilter([new KeywordMethodSelector(["should"]), new AssertionAnnotationSelector()], [new NospecRejector()]);
+        $this->setupFilter = new MethodFilter([new KeywordMethodSelector(["setup", "given"])], []);
     }
 
     function is_keyword($kw, $w)
@@ -33,19 +34,12 @@ class ContextBuilder
         }
         return false; 
     }
-
-    function is_setup($f)
-    {
-        $words = explode("_", $f->name);
-        return in_array("given", $words);
-    }
-
     
     function build($class)
     {
          $methods = $class->getMethods();
          $ctx = new Context($class,
-                 reset(array_filter($methods, array($this,'is_setup'))),
+                 reset($this->setupFilter->filter($methods)),
                  reset(array_filter($methods, array($this,'is_action'))),
                  $this->assertionFilter->filter($methods)); 
 
