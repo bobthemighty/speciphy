@@ -5,6 +5,7 @@ namespace Speciphy\Framework;
 
 use mindplay\annotations\Annotations;
 use Speciphy\Framework\Annotations\ContextAnnotation;
+use Speciphy\Framework\Annotations\AssertionAnnotation;
 use Speciphy\Framework\Annotations\IgnoreAnnotation;
 include_once "Annotations/AnnotationConfig.php";
     
@@ -47,91 +48,12 @@ interface IContextSelectionRule{
     public function isContext($class);
 }
 
-interface ISelectAssertions
-{
-    public function select($methods);
-}
-
-interface ISelectActions
-{
-    public function select($methods);
-}
-
-interface ISelectSetupMethods
-{
-    public function select($methods);
-}
-
-interface ISelectCleanupMethods
-{
-    public function select($methods);
-}
-
-class ContextBuilder
-{
-    function is_keyword($kw, $w)
-    {
-        return strcasecmp($kw, $w) == 0;
-    }
 
 
-    function except_ignored($m)
-    {
-        $annotations = Annotations::ofMethod($m->class, $m->name);
-        foreach($annotations as $a)
-        {
-            if($a instanceof IgnoreAnnotation)
-            {
-                return false;
-            }
-        }
-        return true;
-    }
-    
-
-    function is_action($f)
-    {
-        $words = explode("_", $f->name);
-        foreach($words as $word)
-        {
-            if($this->is_keyword("when", $word))
-                return true;
-            if($this->is_keyword("because", $word))
-                return true;
-        }
-        return false; 
-    }
-
-    function is_setup($f)
-    {
-        $words = explode("_", $f->name);
-        return in_array("given", $words);
-    }
-
-    function is_assert($f)
-    {
-        $words = explode("_", $f->name);
-        foreach($words as $word)
-        {
-            if($word == "should")
-                return $this->except_ignored($f);
-        }
-        return false;
-    }
 
 
-    function build($class)
-    {
-         $methods = $class->getMethods();
-         $ctx = new Context($class,
-                 reset(array_filter($methods, array($this,'is_setup'))),
-                 reset(array_filter($methods, array($this,'is_action'))),
-                 array_filter($methods, array($this, 'is_assert')));
 
 
-        return $ctx;
-    }
-}
 
 class RunnerBuilder
 {

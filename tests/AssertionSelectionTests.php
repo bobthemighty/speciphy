@@ -74,10 +74,17 @@ class When_filtering_a_context_for_assertions
         expect($this->context->then, hasValue(isMethod($method)));
     }
 
-    function it_should_not_find_methods_annotated_with_ignore()
+    function it_should_not_find_methods_annotated_with_nospec()
     {
         $cls = new \ReflectionClass(this_is_not_a_context::class);
         $method = $cls->getMethod("it_should_ignore_this_one");
         expect($this->context->then, not(hasValue(isMethod($method))));
+    }
+    
+    function it_should_find_methods_annotated_with_assertion()
+    {
+        $cls = new \ReflectionClass(this_is_not_a_context::class);
+        $method = $cls->getMethod("andThis");
+        expect($this->context->then, hasValue(isMethod($method)));
     }
 }
