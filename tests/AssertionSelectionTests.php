@@ -11,7 +11,7 @@ class this_is_not_a_context
     }
 
     /**
-    *@assertion
+    *@assert
     */
     function andThis(){}
 

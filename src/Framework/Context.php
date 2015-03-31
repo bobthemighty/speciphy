@@ -4,6 +4,8 @@ class Context
 {
     function __construct($cls, $given, $when, $then)
     {
+        if(!$given){ $given = null; }
+        if(!$when){ $when = null; }
         $this->cls = $cls;
         $this->given = $given;
         $this->action= $when;
