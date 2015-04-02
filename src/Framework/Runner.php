@@ -137,11 +137,13 @@ class Runner
     {
         $contexts = $this->selector->select(
         $this->finder->find());
+        $reporter = new ColouredConsoleReporter();
         foreach($contexts  as $t)
         {
             $cls = new \ReflectionClass($t);
             $ctx = $this->builder->build($cls);
-            $ctx->execute()->report();
+            $reporter->report(
+                $ctx->execute());
         }
     }
    }

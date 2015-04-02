@@ -41,41 +41,6 @@ class ContextResult
         $this->asserts[$this->format($name)] = $report;
     }
 
-    function report()
-    {
-        if($this->is_successful())
-        {
-            error_log(Color::set($this->contextName, "green+bold+underline"));
-        }
-        else
-        {
-            error_log(Color::set($this->contextName, "red+bold+underline"));
-        }
-
-        if($this->setup)
-        {
-            error_log(Color::set("* ". $this->setup, "bold+white"));
-        }
-
-        if($this->action)
-        {
-            error_log(Color::set("* ". $this->action, "bold+white"));
-        }
-
-        foreach($this->asserts as $assert)
-        {
-            if($assert->success) 
-            {
-                error_log(Color::set("\t* ". $assert->name, "white"));
-            }
-            else
-            {
-                error_log(Color::set("\t* ". $assert->name, "red"));
-                error_log(Color::set("\t** ". $assert->msg, "yellow"));
-            }
-        }
-    }
-
     function is_successful()
     {
         foreach($this->asserts as $assert)
@@ -86,3 +51,4 @@ class ContextResult
         return true;
     }
 }
+
