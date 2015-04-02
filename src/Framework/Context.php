@@ -10,6 +10,15 @@ class Context
         $this->given = $given;
         $this->action= $when;
         $this->then = $then;
+
+        $this->checkAmbiguity();
+    }
+
+    function checkAmbiguity()
+    {
+        if($this->action != null
+            && $this->action == $this->given)
+            throw new \Exception("ambiguous, blud");
     }
 
     function execute()
