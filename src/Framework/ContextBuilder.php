@@ -23,8 +23,8 @@ class ContextBuilder
     {
          $methods = $class->getMethods();
          $ctx = new Context($class,
-                 reset($this->setupFilter->filter($methods)),
-                 reset($this->actionFilter->filter($methods)),
+                 $this->setupFilter->filter($methods),
+                 $this->actionFilter->filter($methods),
                  $this->assertionFilter->filter($methods)); 
 
 

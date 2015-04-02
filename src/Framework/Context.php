@@ -6,18 +6,21 @@ class Context
     {
         if(!$given){ $given = null; }
         if(!$when){ $when = null; }
+        
+        $this->checkAmbiguity($given, $when);
+       
         $this->cls = $cls;
-        $this->given = $given;
-        $this->action= $when;
+        $this->given = $given[0];
+        $this->action= $when[0];
         $this->then = $then;
-
-        $this->checkAmbiguity();
     }
 
-    function checkAmbiguity()
+    function checkAmbiguity($given, $when)
     {
-        if($this->action != null
-            && $this->action == $this->given)
+        if($when != null
+            && $when == $given)
+            throw new \Exception("ambiguous, blud");
+        if(count($given) > 1)
             throw new \Exception("ambiguous, blud");
     }
 
