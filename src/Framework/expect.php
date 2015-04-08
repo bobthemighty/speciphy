@@ -2,6 +2,10 @@
 
 use Hamcrest\StringDescription;
 
+class ExpectationException extends \RuntimeException
+{
+}
+
 function expect($subject, $matcher)
 {
     $desc = new StringDescription();
@@ -14,7 +18,7 @@ function expect($subject, $matcher)
     $desc->appendText(" but was ");
 
     $matcher->describeMismatch($subject,$desc);
-    throw new Exception($desc->__toString());
+    throw new ExpectationException($desc->__toString());
 }
 
 

@@ -2,7 +2,9 @@
 
 namespace Speciphy\Framework;
 
-class ColouredConsoleReporter
+use Speciphy\Framework\Recorder\TestRunRecorder;
+
+class ColouredConsoleReporter implements TestRunRecorder
 {
     function report($result)
     {

@@ -2,7 +2,7 @@
 namespace Speciphy\Framework;
 class Context
 {
-    function __construct($cls, $given, $when, $then)
+    function __construct($cls, $given, $when, $then, $cleanups)
     {
         if(!$given){ $given = null; }
         if(!$when){ $when = null; }
@@ -13,6 +13,7 @@ class Context
         $this->given = $given[0];
         $this->action= $when[0];
         $this->then = $then;
+        $this->cleanups = $cleanups;
     }
 
     function checkAmbiguity($given, $when)
@@ -24,15 +25,15 @@ class Context
             throw new \Exception("ambiguous, blud");
     }
 
-    function execute()
+    function execute(\Speciphy\Framework\Recorder\TestRunRecorder $recorder)
     {
-        $recorder = new ContextResult();
-        $recorder->recordContext($this->cls->name);
+        $recorder->recordContextStart($this->cls->name);
         $ctx = $this->cls->newInstance();
 
         $this->executeGiven($ctx, $recorder);
         $this->executeAction($ctx, $recorder);
         $this->executeAssertions($ctx, $recorder);        
+        $this->cleanup($ctx);
         return $recorder;
     }
 
@@ -40,8 +41,9 @@ class Context
     {
        if($this->given)
        {
+               $recorder->recordSetupStart($this->given->name);
                $this->given->invoke($ctx);
-               $recorder->recordSetup($this->given->name);
+               $recorder->recordSetupEnd();
         }
     }
     
@@ -49,8 +51,9 @@ class Context
     {
         if($this->action)
         {
+            $recorder->recordActionStart($this->action->name);
             $this->action->invoke($ctx);
-            $recorder->recordAction($this->action->name);
+            $recorder->recordActionEnd();
         }
     }
 
@@ -60,12 +63,23 @@ class Context
         {
             try
             {
+                $recorder->recordAssertionStart($assertion->name);
                 $assertion->invoke($ctx);
-                $recorder->recordSuccess($assertion->name);
+                $recorder->recordAssertionEnd();
             }
             catch(\Exception $e)
             {
-                $recorder->recordFailure($assertion->name, $e->getMessage());
+                $recorder->recordAssertionEnd($e);
+            }
+        }
+    }
+
+    function cleanup($ctx)
+    {
+        if($this->cleanups){
+            foreach($this->cleanups as $cleanup)
+            {
+                $cleanup->invoke($ctx);
             }
         }
     }

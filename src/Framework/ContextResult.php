@@ -1,5 +1,6 @@
 <?php
 namespace Speciphy\Framework;
+
 class ContextResult
 {
 
@@ -7,6 +8,7 @@ class ContextResult
         $this->asserts = [];
         $this->action = false;
         $this->setup =  false;
+        $this->reporter = new ColouredConsoleReporter();
     }
 
     function format($name)
