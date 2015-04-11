@@ -40,7 +40,7 @@ Speciphy uses a simple keyword-based approach to finding contexts and assertions
 * A class starting with the word "when" (or annotated with @context) is a test.
 * A function starting with the word "given" (or annotated with @arrange) is a setup method.
 * A function containing the word "when", or "because" (or annotated @act) is an action method.
-* A function containing the word "should" (or annotated @assert) is an assertion.
+* A function containing the word "should", or "will" (or annotated @assert) is an assertion.
 
 ## Can I change the matching?
 
