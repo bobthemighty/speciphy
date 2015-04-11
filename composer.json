@@ -11,7 +11,8 @@
     ],
     "require": {
         "hamcrest/hamcrest-php": "1.2.1",
-        "mindplay/annotations": "1.2.*@dev"
+        "mindplay/annotations": "1.2.*@dev",
+        "webtrendi/clapp": "1.0.0"
     },
     "autoload": {
         "psr-4": {

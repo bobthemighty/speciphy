@@ -2,6 +2,8 @@
 
 namespace Speciphy\Framework\Recorder;
 
+use Speciphy\Framework\Color;
+
 class ColouredConsoleReporter implements TestRunRecorder
 {
 
@@ -41,8 +43,8 @@ class ColouredConsoleReporter implements TestRunRecorder
     public function recordAssertionEnd($err=null){
         if($err)
         {
-            $failures[] = new AssertionFailure($this->currentContext, $this->currentAssert, $err->getMessage());
-            echo "  FAIL: " . $this->currentAssert . PHP_EOL . "\t\t" . $err->getMessage();
+            $this->failures[] = new AssertionFailure($this->currentContext, $this->currentAssert, $err->getMessage());
+            echo "  FAIL: " . $this->currentAssert . PHP_EOL . "    " . $err->getMessage();
         }
         else
         {
@@ -54,11 +56,11 @@ class ColouredConsoleReporter implements TestRunRecorder
 
         if($this->isSuccess())
         {
-            echo("PASSED!" . PHP_EOL);
+            echo(Color::set("PASSED!" . PHP_EOL, "green+bold"));
         }
         else
         {
-            echo("FAILED!" . PHP_EOL);
+            echo(Color::set("FAILED!" . PHP_EOL, "red+bold"));
             foreach($this->failures as $fail)
             {
                 echo($fail->getMessage() . PHP_EOL);

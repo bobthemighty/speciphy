@@ -14,7 +14,7 @@ class AssertionFailure
     {
         return $this->context . ": ". $this->assertion . 
             PHP_EOL . 
-            "\t" . $this->message;
+            "    " . $this->message;
     }
 }
 

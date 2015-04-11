@@ -22,10 +22,10 @@ class QuietTestRecorder implements TestRunRecorder
 
     public function recordContextStart($ctx){
         $this->currentContext = $this->formatter->format($ctx);
+        $this->contexts ++;  
     }
     
     public function recordContextEnd($err=null){
-      $this->contexts ++;  
     }
 
     public function recordSetupStart(){}

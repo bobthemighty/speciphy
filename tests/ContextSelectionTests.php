@@ -1,6 +1,6 @@
 <?php
 
-use Speciphy\Framework\ContextSelector;
+use Speciphy\Framework\Finders\ContextSelector;
 
 class When_a_class_starts_with_the_word_when
 {

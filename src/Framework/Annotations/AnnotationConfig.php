@@ -9,3 +9,5 @@ Annotations::getManager()->registry["assert"] = "Speciphy\Framework\Annotations\
 Annotations::getManager()->registry["arrange"] = "Speciphy\Framework\Annotations\SetupAnnotation";
 Annotations::getManager()->registry["nospec"] = "Speciphy\Framework\Annotations\IgnoreAnnotation";
 Annotations::getManager()->registry["act"] = "Speciphy\Framework\Annotations\ActAnnotation";
+Annotations::getManager()->registry["codeCoverageIgnoreStart"] = false;
+Annotations::getManager()->registry["codeCoverageIgnoreEnd"] =false;

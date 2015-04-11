@@ -98,7 +98,7 @@ class When_an_assertion_fails
     function it_should_list_failures()
     {
         expect(ob_get_contents(),
-            containsString("My special context: it should be marvellous" . PHP_EOL . "\t" . "expected marvels, but was not marvellous"));
+            containsString("My special context: it should be marvellous" . PHP_EOL . "    " . "expected marvels, but was not marvellous"));
     }
 
     
