@@ -3,7 +3,7 @@ Simple context/specification style testing for PHP, inspired by [mspec](https://
 
 ## Does it work yet?
 
-No. But putting it up on github makes me feel a sense of urgency in finishing it.
+Yes! Packages are coming soon, but right now you can build your own phar using [box](https://github.com/box-project/box2).
 
 ## What does it do?
 
