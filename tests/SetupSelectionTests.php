@@ -112,3 +112,27 @@ class When_a_setup_method_is_decorated_with_nospec
             is( nullvalue() ));
     }
 }
+
+class parent_class
+{
+    function given_a_parent_class_with_an_arrangement_method()
+    {
+    }
+}
+
+class When_a_class_inherits_an_arrangement_method extends parent_class
+{
+    
+    function because_we_build_a_context()
+    {
+        $this->cls = new \ReflectionClass("parent_class");
+        $ctxbuilder = new ContextBuilder();
+        $this->ctx = $ctxbuilder->build($this->cls);
+    }
+
+    function it_should_select_the_arrangement()
+    {
+        expect($this->ctx->given,
+            isMethod($this->cls->getMethod("given_a_parent_class_with_an_arrangement_method")));
+    }
+}

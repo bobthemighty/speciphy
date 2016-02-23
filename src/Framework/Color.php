@@ -5,7 +5,6 @@
  *    * Original
  *     *     https://github.com/loopj/commonjs-ansi-color
  *      *
- *       * @code
  *        * <?php
 *         * require_once "ansi-color.php";
 *          *
@@ -19,7 +18,6 @@
 *                  *
 *                   * // Print the word "Success" in bold green, followed by a message
 *                    * error_log(Color::set("Success", "green+bold"), "Something was successful!");
-*                     * @endcode
 *                      */
 namespace Speciphy\Framework;
 
