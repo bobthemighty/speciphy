@@ -1,0 +1,14 @@
+{
+    "directories": [
+        "src", 
+        "vendor/webtrendi/clapp/src",
+        "vendor/mindplay/annotations/src",
+        "vendor/hamcrest/",
+        "vendor/composer"
+        ],
+    "files":["vendor/autoload.php"],
+    "main":"src/speciphy.php",
+    "stub": true,
+    "chmod": "0755",
+    "output": "speciphy.phar"
+}
